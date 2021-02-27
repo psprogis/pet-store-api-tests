@@ -6,7 +6,7 @@
     "test": "mocha --require ts-node/register ./tests/**/*.test.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Pavlo Sprogis <pavlo.sprogis@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@types/mocha": "^8.2.0",
