@@ -1,5 +1,6 @@
-import {strict as assert} from 'assert';
+import { strict as assert } from 'assert';
 import { PetController } from '../api/controller/pet.controller';
+import { definitions } from "../.temp/types";
 
 const pet = new PetController();
 
@@ -25,20 +26,20 @@ describe('Pet', function() {
         petResp = await pet.findByStatus(['pending', 'available']);
         assert(petResp.length > 0)
 
-        assert(petResp.some((pet: any) => pet.status == 'available'));
-        assert(petResp.some((pet: any) => pet.status == 'pending'));
-        assert(!petResp.some((pet: any) => pet.status == 'sold'));
+        assert(petResp.some((pet) => pet.status == 'available'));
+        assert(petResp.some((pet) => pet.status == 'pending'));
+        assert(!petResp.some((pet) => pet.status == 'sold'));
     });
 
     it('can be received by tag', async function() {
         const petResp = await pet.findByTags('tag1')
 
         assert(petResp.length > 0)
-        assert(petResp.every((pet: any) => pet.tags.some((tag: any) => tag.name == 'tag1')));
+        assert(petResp.every((pet) => pet.tags.some((tag) => tag.name == 'tag1')));
     });
 
     it('can be added, updated, and deleted', async function() {
-        const petToCreate = {
+        const petToCreate: Omit<definitions['Pet'], 'id'> = {
             "category": {
                 "id": 0,
                 "name": "string"
@@ -73,7 +74,7 @@ describe('Pet', function() {
             },
             `Expected found pet to match created pet`
         )
-        const newerPet = {
+        const newerPet: definitions['Pet'] = {
             id: addedPet.id,
             category: {
                 id: 1,
