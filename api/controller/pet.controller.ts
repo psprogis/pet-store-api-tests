@@ -1,34 +1,72 @@
-import got from 'got';
-import {URLSearchParams} from 'url';
+import { URLSearchParams } from 'url';
+import { JsonRequest } from '../request'
 
-// TODO: remove to config
-const baseUrl = 'http://localhost/v2';
+const HOST = 'http://localhost/v2';
 
 export class PetController {
-    
-    async getById(id: number | string) {
-        const response = await got(`${baseUrl}/pet/${id}`);
 
-        return JSON.parse(response.body);
+    async addNew(pet: {
+        category: { id: number; name: string; };
+        name: string; photoUrls: string[];
+        tags: { id: number; name: string; }[];
+        status: string;
+    }) {
+        return (
+            await new JsonRequest()
+            .url(`${HOST}/pet`)
+            .method('POST')
+            .body(pet)
+            .send()
+        ).body;
+    }
+
+    async update(pet: {
+        id: number,
+        category: { id: number; name: string; };
+        name: string; photoUrls: string[];
+        tags: { id: number; name: string; }[]; status: string;
+    }) {
+        return (
+            await new JsonRequest()
+            .url(`${HOST}/pet`)
+            .method('PUT')
+            .body(pet)
+            .send()
+        ).body;
+    }
+
+    async delete(id: number | string) {
+        return (
+            await new JsonRequest()
+            .url(`${HOST}/pet/${id}`)
+            .method('DELETE')
+            .send()
+        ).body;
     }
 
     async findByTags(tags: string | string[]) {
-        const response = await got(`${baseUrl}/pet/findByTags`, {
-            searchParams: new URLSearchParams({
-                tags
-            })
-        });
-
-        return JSON.parse(response.body);
+        return (
+            await new JsonRequest()
+            .url(`${HOST}/pet/findByTags`)
+            .searchParams(new URLSearchParams({tags}))
+            .send()
+        ).body;
     }
 
     async findByStatus(status: string | string[]) {
-        const response = await got(`${baseUrl}/pet/findByStatus`, {
-            searchParams: new URLSearchParams({
-                status
-            })
-        });
+        return (
+            await new JsonRequest()
+            .url(`${HOST}/pet/findByStatus`)
+            .searchParams(new URLSearchParams({status}))
+            .send()
+        ).body;
+    }
 
-        return JSON.parse(response.body);
+    async getById(id: number | string) {
+        return (
+            await new JsonRequest()
+                .url(`${HOST}/pet/${id}`)
+                .send()
+        ).body;
     }
 }
