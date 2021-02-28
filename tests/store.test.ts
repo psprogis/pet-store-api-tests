@@ -3,8 +3,8 @@ import { definitions } from '../.temp/types';
 import { PetController } from '../api/controller/pet.controller';
 import { StoreController } from '../api/controller/store.controller';
 
-const pet = new PetController()
-const store = new StoreController()
+const pet = new PetController();
+const store = new StoreController();
 
 describe('Store', () => {
     it('should return his inventory, and correctly updates statuses', async function () {

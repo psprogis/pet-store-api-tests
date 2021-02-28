@@ -14,7 +14,7 @@ describe('Pet', function() {
 
     it('can be received by status', async function() {
         let petResp = await pet.findByStatus('available');
-        assert(petResp.length > 0, 'no availabe')
+        assert(petResp.length > 0, 'no available')
 
         petResp = await pet.findByStatus('pending');
         assert(petResp.length > 0, 'no pending');
