@@ -1,4 +1,10 @@
 
+## Setup
+Start petstore image locally:
+```bash
+docker run -d -e SWAGGER_HOST=http://localhost -e SWAGGER_URL=http://localhost  -p 80:8080 ibnxotabu4/swagger-api-petstore
+```
+
 ## Links
 1. [fixed docker image](https://hub.docker.com/r/ibnxotabu4/swagger-api-petstore)
 2. [understanding JSON schema](https://json-schema.org/understanding-json-schema/)
