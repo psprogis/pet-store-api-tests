@@ -9,6 +9,7 @@ const store = new StoreController();
 describe('Store', () => {
     it('should return his inventory, and correctly updates statuses', async function () {
         // Potential issue when running in parallel, and other threads will add pets as well.
+        this.timeout(10 * 1000);
 
         const inventory = await store.getInventory();
         assert(Object.keys(inventory).length > 0, `List of inventory statuses must not be empty`);

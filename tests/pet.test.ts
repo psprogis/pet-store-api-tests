@@ -13,6 +13,8 @@ describe('Pet', function() {
     });
 
     it('can be received by status', async function() {
+        this.timeout(10 * 1000);
+
         let petResp = await pet.findByStatus('available');
         assert(petResp.length > 0, 'no available')
 

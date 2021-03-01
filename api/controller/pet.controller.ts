@@ -2,7 +2,7 @@ import { URLSearchParams } from 'url';
 import { JsonRequestWithValidation } from '../request';
 import { definitions, operations } from "../../.temp/types";
 
-const HOST = 'http://petstore.swagger.io/v2';
+const HOST = 'http://localhost/v2';
 
 export class PetController {
 

@@ -1,7 +1,7 @@
 import { JsonRequestWithValidation } from '../request';
 import { operations } from "../../.temp/types";
 
-const HOST = 'http://petstore.swagger.io/v2';
+const HOST = 'http://localhost/v2';
 
 export class StoreController {
 
