@@ -1,15 +1,13 @@
-import { JsonRequest } from "http-req-builder";
+import { JsonRequestWithValidation } from '../request';
 import { operations } from "../../.temp/types";
 
-const HOST = 'http://localhost/v2';
+const HOST = 'http://petstore.swagger.io/v2';
 
 export class StoreController {
 
     async getInventory() {
-        return (
-            await new JsonRequest()
+        return (await new JsonRequestWithValidation()
             .url(`${HOST}/store/inventory`)
-            .headers({token: 'special-key'})
             .send<operations['getInventory']['responses']['200']['schema']>()
         ).body;
     }
