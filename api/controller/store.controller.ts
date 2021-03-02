@@ -1,6 +1,6 @@
 import { JsonRequestWithValidation } from '../request';
-import {definitions, operations} from "../../.temp/types";
-import {BaseController} from "./base.controller";
+import { definitions, operations } from '../../.temp/types';
+import { BaseController } from './base.controller';
 
 const HOST = 'http://localhost/v2';
 
