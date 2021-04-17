@@ -1,4 +1,6 @@
 import { CookieJar } from 'tough-cookie';
+import { CONFIG } from '../config/env';
+import { ControllerOptions } from './controller/base.controller';
 import { PetController } from './controller/pet.controller';
 import { StoreController } from './controller/store.controller';
 import { UserController } from './controller/user.controller';
@@ -8,14 +10,16 @@ export class ApiClient {
     public readonly store: StoreController;
     public readonly user: UserController;
 
-    constructor(params?: { token: string, cookies?: CookieJar }) {
-        const defaultParams = {
-            cookies: new CookieJar(),
+    constructor(options?: Partial<ControllerOptions>) {
+        const defaultOptions = {
+            cookieJar: new CookieJar(),
+            prefixUrl: CONFIG.PETSTORE_URL,
+            prefixPath: CONFIG.PETSTORE_API_PREFIX_PATH,
         };
 
         const mergedParams = {
-            ...defaultParams,
-            ...params,
+            ...defaultOptions,
+            ...options,
         };
 
         this.pet = new PetController(mergedParams);

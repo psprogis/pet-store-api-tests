@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "npm run pretest",
     "pretest": "openapi-typescript http://localhost/v2/swagger.json --output ./.temp/types.ts",
-    "test": "mocha --require ts-node/register ./tests/**/*.test.ts"
+    "test": "mocha --require ts-node/register --require dotenv/config ./tests/**/*.test.ts"
   },
   "keywords": [],
   "author": "Pavlo Sprogis <pavlo.sprogis@gmail.com>",
