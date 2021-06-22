@@ -28,7 +28,8 @@ describe('Store', () => {
         const order = {
             petId: 1,
             quantity: 1,
-            shipDate: new Date().toISOString()
+            shipDate: new Date().toISOString(),
+            status: 'placed' as definitions['Order']['status']
             // TODO: verify rest of params
         }
         const placedOrder = await userClient.store.placeOrder(order);
