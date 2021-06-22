@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "postinstall": "npm run pretest",
-    "pretest": "openapi-typescript http://localhost/v2/swagger.json --output ./.temp/types.ts",
+    "pretest": "ts-node ./utils/generate-typings.ts",
     "test": "mocha"
   },
   "keywords": [],
