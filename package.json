@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "cleanup": "rimraf allure-results allure-report",
     "postinstall": "npm run pretest",
     "pretest": "ts-node ./utils/generate-typings.ts",
-    "test": "mocha"
+    "test": "npm run cleanup && mocha"
   },
   "keywords": [],
   "author": "Pavlo Sprogis <pavlo.sprogis@gmail.com>",
@@ -23,6 +24,7 @@
     "mocha-multi-reporters": "^1.5.1",
     "openapi-typescript": "^3.0.1",
     "response-openapi-validator": "^1.1.0",
+    "rimraf": "^3.0.2",
     "tough-cookie": "^4.0.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
