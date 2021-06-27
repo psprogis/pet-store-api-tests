@@ -1,11 +1,13 @@
 import { JsonRequestWithValidation } from '../request';
 import { definitions, operations } from '../../.temp/types';
 import { BaseController } from './base.controller';
+import { AllureStep } from '../../utils/allureStep';
 
 export class StoreController extends BaseController {
 
+    @AllureStep('[StoreController] getOrderById')
     async getOrderById(orderId: number | string) {
-        return (await new JsonRequestWithValidation()        
+        return (await new JsonRequestWithValidation()
             .prefixUrl(new URL(this.options.prefixPath, this.options.prefixUrl))
             .url(`store/order/${orderId}`)
             .headers({ token: this.options.token })
@@ -14,6 +16,7 @@ export class StoreController extends BaseController {
         ).body;
     }
 
+    @AllureStep('[StoreController] placeOrder')
     async placeOrder(order: Omit<definitions['Order'], 'id'>) {
         return (await new JsonRequestWithValidation()
             .prefixUrl(new URL(this.options.prefixPath, this.options.prefixUrl))
@@ -26,6 +29,7 @@ export class StoreController extends BaseController {
         ).body;
     }
 
+    @AllureStep('[StoreController] getInventory')
     async getInventory() {
         return (await new JsonRequestWithValidation()
             .prefixUrl(new URL(this.options.prefixPath, this.options.prefixUrl))

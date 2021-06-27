@@ -1,10 +1,11 @@
 import { BaseController } from './base.controller';
 import { JsonRequestWithValidation } from '../request';
 import {definitions, operations} from '../../.temp/types';
-
-const HOST = 'http://localhost/v2';
+import { AllureStep } from '../../utils/allureStep';
 
 export class UserController extends BaseController {
+
+    @AllureStep('[UserController] login')
     async login(credentials: { username: string, password: string }) {
         return (await new JsonRequestWithValidation()
             .prefixUrl(new URL(this.options.prefixPath, this.options.prefixUrl))
@@ -16,6 +17,7 @@ export class UserController extends BaseController {
         ).headers['token'] as string;
     }
 
+    @AllureStep('[UserController] register')
     async register(userToCreate: Omit<definitions["User"], "id" | "userStatus">) {
         return (await new JsonRequestWithValidation()
             .prefixUrl(new URL(this.options.prefixPath, this.options.prefixUrl))
