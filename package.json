@@ -6,7 +6,8 @@
     "cleanup": "rimraf allure-results allure-report",
     "postinstall": "npm run pretest",
     "pretest": "ts-node ./utils/generate-typings.ts",
-    "test": "npm run cleanup && mocha"
+    "test": "npm run cleanup && mocha",
+    "report": "allure generate && allure open"
   },
   "keywords": [],
   "author": "Pavlo Sprogis <pavlo.sprogis@gmail.com>",
